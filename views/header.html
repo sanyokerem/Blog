@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>OOP</title>
+
+		<!-- Bootstrap CSS -->
+		<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+
+		<!-- jQuery -->
+		<script src="//code.jquery.com/jquery.js"></script>
+		<!-- Bootstrap JavaScript -->
+		<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+			<nav class="navbar navbar-inverse">
+				<?php if (\App::$user): ?>
+					<a class="navbar-brand" href="blog"><?= \App::$user->get_name() ?></a>
+				<?php else: ?>
+					<div class="navbar-brand">Unexpected user</div>
+				<?php endif ?>
+				<ul class="nav navbar-nav">
+					<li class= <?= preg_match('#^/$#', \Router::$url) ? 'active' : '' ?> >
+						<a href="/">All posts</a>
+					</li>
+					<?php if (\App::$user): ?>
+						<li>
+							<a href="/user/logout">Logout</a>
+						</li>
+					<?php else: ?>
+						<li class= <?= preg_match('#^/user/login$#', \Router::$url) ? 'active' : '' ?>>
+							<a href="/user/login">Login</a>
+						</li>
+						<li class= <?= preg_match('#^/user/register$#', \Router::$url) ? 'active' : '' ?>>
+							<a href="/user/register">Reg</a>
+						</li>
+					<?php endif ?>
+				</ul>
+			</nav>
+		<div class="container">

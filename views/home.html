@@ -1,0 +1,20 @@
+<h1>Main page</h1>
+
+<?php foreach ($vars['posts'] as $post): ?>
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<h3 class="panel-title"><?= $post['title'] ?>
+			<span class="badge pull-right"><?=  $post['user_name']?></span>
+			</h3>
+		</div>
+		<div class="panel-body">
+			<?=$post['content']?>
+		</div>
+		<div class="panel-footer">
+			<?php
+				$date = new DateTime($post['date']);
+				echo $date->format('j M Y \a\t G:i');
+			?>
+		</div>
+	</div>
+<?php endforeach ?>
